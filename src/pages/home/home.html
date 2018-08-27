@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Dashboard
+    </ion-title>
+
+
+    <ion-buttons end>
+      <a href="http://localhost:3000/dashboard"><button ion-button>CONTAINER INFORMATION SYSTEM</button></a>
+      <button ion-button (click)="addMarker()" style="    background: #FFF;color: #ab00b5;">MAP OPERATIONS</button>
+      <button ion-button (click)="addMarker()">PORT OPERATIONS</button>
+      <button ion-button (click)="addMarker()">TRANSPORT</button>
+      <button id="notification-button" ion-button end>
+        <ion-icon name="notifications">
+          <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+        </ion-icon>              
+    </button>
+    </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+  <div #map id="map"></div> 
+</ion-content>
