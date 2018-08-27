@@ -1,0 +1,325 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9433500766754,
+            18.943439028487607
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9442298412323,
+            18.942825088059184
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.94580966234207,
+            18.944847023835596
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.94597327709198,
+            18.946364093819053
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.94858038425446,
+            18.946313355915386
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9519733786583,
+            18.946366630713825
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95179098844528,
+            18.948629525498323
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9528746008873,
+            18.950478886455116
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95359343290329,
+            18.950072992801704
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95235693454742,
+            18.95300808903828
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95383214950562,
+            18.95283558697103
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95555144548416,
+            18.958662506581007
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95509546995163,
+            18.958885736718862
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9530918598175,
+            18.959748213989755
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95205920934677,
+            18.960176914267898
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.9515415430069,
+            18.955638723464165
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95111775398254,
+            18.95437034174491
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.94964253902435,
+            18.95252863432208
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.94876813888548,
+            18.952406867825555
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "marker-color": "#848179",
+          "marker-size": "small",
+          "marker-symbol": "bus",
+          "trailer": "True"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            72.95421838760376,
+            18.953107023966968
+          ]
+        }
+      }
+    ]
+  }
