@@ -43,8 +43,7 @@ const MAPPING={
 }
 
 const BLOCKS=[
-  ["viaRegistered","IGMFiled","registeredVesselDetails","requestedBerthAllocation","BerthAllocated"],
-  
+  ["viaRegistered","IGMFiled","registeredVesselDetails","requestedBerthAllocation","BerthAllocated"],  
   ["immigrationCompletedFormalities","customsCompletedFormalities","PHOCompletedFormalities","otherAuth1CompletedFormalities","otherAuth2CompletedFormalities",
   "vesselUnloadingStarted","vesselUnloadingEnded","vesselLoadingStarted","vesselLoadingEnded"],
   ["containerDischarged","deliveryOrderIssued","billOfEntryRegistered","dutyPaid"],
@@ -61,6 +60,15 @@ const BLOCKS=[
 export class ContInfoPage {
   user:any={};
   active_block=0;
+
+   file_upload_task=["viaRegistered","IGMFiled","registeredVesselDetails","billOfEntryRegistered"]
+
+   FILE_CHECK_TASK=["immigrationCompletedFormalities","customsCompletedFormalities","PHOCompletedFormalities","otherAuth1CompletedFormalities","otherAuth2CompletedFormalities"]
+  
+  
+  myInput:String;
+
+  toDoTask=null;
 
 
   show_events=[
@@ -109,6 +117,47 @@ export class ContInfoPage {
     this.navCtrl.push(HomePage)
   }
 
+  search(q: string) { 
+
+  }
+
+
+  uploadDocument(){
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+
+    let data={
+      withCredentials:true,
+      access_token:"8ncH7lbnkMFeEAH81AOYAiRm29sesLF8xbGkhvVOBmxS2ByxYgbGlHRFJw6a7jY6"
+
+    }
+    
+    this.http.post(SERVER_URL+'api/viaRegistered',
+     data ,options).toPromise()
+    .then(data=>{
+          console.log(data)
+
+        }
+        ,err=>{
+          console.log(err)
+        }
+    )
+
+
+  }
+
+  approveDocument(){
+
+  }
+
+  disapproveDocument(){
+    
+  }
+
+
+
   get_task_list_vessel(){
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -144,6 +193,12 @@ export class ContInfoPage {
                 this.show_events[block].push(task);
             else
                 this.show_events[block]=[task];
+
+            if(this.toDoTask==null && data[i].assigneeID===this.user.username && !data[i].finished){
+              this.toDoTask=data[i].transactionId;
+              console.log("hoila");
+
+            }
 
           } 
 

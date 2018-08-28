@@ -46,6 +46,8 @@ export class DetailPage {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
+    
+
 
     this.http.post(SERVER_URL+'api/users/login',"username="+this.registerCredentials.username+"&password="+this.registerCredentials.password,options).toPromise()
     .then(data=>{

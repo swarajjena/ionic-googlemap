@@ -6,10 +6,18 @@
 
 
     <ion-buttons end>
-      <button ion-button (click)="addMarker()" style="    background: #FFF;color: #ab00b5;">CONTAINER INFORMATION SYSTEM</button>
+      <button ion-button style="background: #FFF;color: #ab00b5;">CONTAINER INFORMATION SYSTEM</button>
       <button ion-button (click)="goToMApPage()">MAP OPERATIONS</button>
-      <button ion-button >PORT OPERATIONS</button>
-      <a href="http://localhost:3000/dashboard"><button ion-button >TRANSPORT</button></a>
+      <a href="http://52.172.133.188:3000"><button ion-button >PORT OPERATIONS</button></a>
+      <a href="http://52.172.133.188:3000"><button ion-button >TRANSPORT</button></a>
+
+      <button ion-button icon-start>
+      <ion-icon name="contact"></ion-icon>
+      {{user!={}?user.username:""}}
+      </button>
+
+      <button ion-button ></button>
+
       <button id="notification-button" ion-button end>
         <ion-icon name="notifications">
           <ion-badge id="notifications-badge" color="danger">5</ion-badge>
@@ -21,13 +29,17 @@
  
 <ion-content>
 
-    <ion-searchbar
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-   
-   >
-  </ion-searchbar>
+  <ion-row>
+      <h2 end col-6>{{containerID==""?"Vessel Number : "+vesselID :"Container number : "+containerID}} </h2>
 
+      <ion-searchbar col-5
+      style="float:right"
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (keyup.enter)="search()"
+      placeholder="Search with Container Number or Vessel Number" full>
+    </ion-searchbar>
+  </ion-row>
     <div class="HorizontalNonLinearAlternativeLabelStepper">
       <div class="HorizontalNonLinearAlternativeLabelStepper_cont" [ngClass]="{'Stepper_active' : active_block>=0}" (click)="make_active(0)">
         <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215">PreBerthing</span>
@@ -56,7 +68,8 @@
       </div>
     </div>
 
-<div class="timeline">
+<ion-row>    
+<div class="timeline" col-6>
   <div   *ngFor="let evnt of   show_events[active_block]">
     <div class="container right" [ngClass]="{'red_border' : evnt.status!=='finished'}">
         <div class="content">
@@ -64,10 +77,35 @@
           <p>{{evnt.status!=='finished'?"Created at ":"Finished at "}}{{evnt.date | date: 'H:mm dd/MM/yyyy ' }} </p>
         </div>
       </div>                                     
-  </div>
-
-      
+  </div>      
 </div>
 
+<div class="work_area" col-6 >
+
+
+    <div  *ngIf="toDoTask!=null &&  file_upload_task.indexOf(toDoTask)>=0">
+        <img src="images/viaRegistered.png" class="document_view" style="height: 500px;">
+        <ion-buttons>
+
+            <input type="file" ion-input />
+            <br >
+        
+          <button ion-button color="secondary" (click)="uploadDocument()"> UPLOAD </button>
+        </ion-buttons>
+    </div>
+      
+      
+  <div style="text-align:center"   *ngIf="toDoTask!=null &&  FILE_CHECK_TASK.indexOf(toDoTask)>=0">
+  <img src="images/viaRegistered.png" class="document_view" style="height: 500px;" >
+  <ion-buttons>
+  
+    <button ion-button color="secondary"  (click)="approveDocument()"> APPROVE </button>
+    <button ion-button color="danger"  (click)="disapproveDocument()"> DISAPPROVE </button>
+  </ion-buttons>
+  </div>
+
+
+</div>
+</ion-row>
 
 </ion-content>

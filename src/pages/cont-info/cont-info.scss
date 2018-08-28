@@ -35,7 +35,7 @@
             padding: 5px 40px 5px 40px;
             position: relative;
             background-color: inherit;
-            width: 50%;
+            width: 100%;
         }
         
         /* The circles on the timeline */
@@ -229,6 +229,25 @@
 
     .HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216{
         opacity:0.5
+    }
+
+    .work_area{
+        width: 400px;
+        background: #F5F5FF;
+        position: relative;
+    }
+
+    .work_area{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    
+
+    .document_view{
     }
 
 }
