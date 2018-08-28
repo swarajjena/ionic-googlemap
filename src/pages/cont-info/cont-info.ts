@@ -76,7 +76,7 @@ export class ContInfoPage {
   ionViewDidLoad() {
     this.storage.get("user").then(
       data=>{
-        if(data=="")return;
+        if(data==="" || data==undefined)return;
         let time_diff=new Date().getTime()-new Date(data.created).getTime()
         console.log(time_diff);
         if(time_diff<3600000){
