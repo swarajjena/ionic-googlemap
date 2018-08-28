@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Dashboard
+    </ion-title>
+
+
+    <ion-buttons end>
+      <button ion-button (click)="addMarker()" style="    background: #FFF;color: #ab00b5;">CONTAINER INFORMATION SYSTEM</button>
+      <a href="http://localhost:3000/dashboard"><button ion-button>MAP OPERATIONS</button></a>
+      <button ion-button (click)="addMarker()">PORT OPERATIONS</button>
+      <button ion-button (click)="addMarker()">TRANSPORT</button>
+      <button id="notification-button" ion-button end>
+        <ion-icon name="notifications">
+          <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+        </ion-icon>              
+    </button>
+    </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+
+    <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+   
+   >
+  </ion-searchbar>
+
+    <div class="HorizontalNonLinearAlternativeLabelStepper">
+      <div class="HorizontalNonLinearAlternativeLabelStepper_cont" [ngClass]="{'Stepper_active' : active_block>=0}" (click)="make_active(0)">
+        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215">PreBerthing</span>
+        <img src="images/PreBerthingIcon.png" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216" [ngClass]="{'Stepper_active' : active_block>0}">
+        <img src="images/ArrowIcon.svg" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper_cont" [ngClass]="{'Stepper_active' : active_block>=1}" (click)="make_active(1)">
+        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215" >Berthing</span>
+        <img src="images/BerthingIcon.png" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216" [ngClass]="{'Stepper_active' : active_block>1}">
+          <img src="images/ArrowIcon.svg" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper_cont" [ngClass]="{'Stepper_active' : active_block>=2}" (click)="make_active(2)">
+        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215">Container Yard</span>
+        <img src="images/ContainerYardIcon.png" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216" [ngClass]="{'Stepper_active' : active_block>2}">
+        <img src="images/ArrowIcon.svg" width="80" height="80">
+      </div>
+      <div class="HorizontalNonLinearAlternativeLabelStepper_cont">
+        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215" [ngClass]="{'Stepper_active' : active_block===3}" (click)="make_active(3)">Port Out</span>
+        <img src="images/PortOutIcon.svg" width="80" height="80">
+      </div>
+    </div>
+
+<div class="timeline">
+  <div   *ngFor="let evnt of   show_events[active_block]">
+    <div class="container right" [ngClass]="{'red_border' : evnt.status!=='finished'}">
+        <div class="content">
+          <h2>{{evnt.name}}</h2>
+          <p>{{evnt.status!=='finished'?"Created at ":"Finished at "}}{{evnt.date | date: 'H:mm dd/MM/yyyy ' }} </p>
+        </div>
+      </div>                                     
+  </div>
+
+      
+</div>
+
+
+</ion-content>

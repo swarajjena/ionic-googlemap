@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+
+import { Storage } from '@ionic/storage';
+import { ContInfoPage } from '../cont-info/cont-info';
+
 /**
  * Generated class for the DetailPage page.
  *
@@ -8,8 +12,9 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
  * Ionic pages and navigation.
  */
 
-const  SERVER_URL="http://104.211.96.209:3001/";
-const  ADMIN_SERVER_URL="http://104.211.96.209:4000/";
+const SERVER_URL="http://52.172.133.188:3001/"
+
+
 
 @Component({
   selector: 'page-detail',
@@ -18,70 +23,48 @@ const  ADMIN_SERVER_URL="http://104.211.96.209:4000/";
 export class DetailPage {
   registerCredentials = { username: '', password: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient,private storage: Storage) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
+    this.storage.get("user").then(
+      data=>{
+        let time_diff=new Date().getTime()-new Date(data.created).getTime()
+        console.log(time_diff);
+        if(time_diff>3600000){
+        }else{
+          this.navCtrl.push(ContInfoPage)
+        }
+      });
+    
   }
 
-  getFormUrlEncoded(toConvert) {
-		const formBody = [];
-		for (const property in toConvert) {
-			const encodedKey = encodeURIComponent(property);
-			const encodedValue = encodeURIComponent(toConvert[property]);
-			formBody.push(encodedKey + '=' + encodedValue);
-		}
-		return formBody.join('&');
-	}
-
   login(){
-    let body = new URLSearchParams();
-    body.set('username', this.registerCredentials.username);
-    body.set('password', this.registerCredentials.password);
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    this.http.post(SERVER_URL+'auth/local',this.getFormUrlEncoded(this.registerCredentials),options).toPromise()
-    .then(data=>function(data){
+
+    this.http.post(SERVER_URL+'api/users/login',"username="+this.registerCredentials.username+"&password="+this.registerCredentials.password,options).toPromise()
+    .then(data=>{
           console.log(data)
-        }.bind(this)
+          data["username"]=this.registerCredentials.username;
+          this.storage.set("user",data).then(()=>{
+            this.storage.get("user").then(
+              data=>{
+                console.log(data);
+                this.navCtrl.push(ContInfoPage);
+              });
+          })
+
+        }
         ,err=>{
           console.log(err)
         }
     )
     
   }
-  issue_identity(){
-    console.log("ok")
-    const identity = {
-      participant: 'org.hack.sagarmala.CUSTOMS#CUSTOMS1',
-      userID: "CUSTOMS1o",
-      options: {}
-    };    
-    this.http.post(ADMIN_SERVER_URL+'api/system/identities/issue', identity,{responseType: 'blob'}).subscribe(
-      cardData=>{
-        console.log(cardData.size);
-        const file = new File([cardData], 'myCard.card', {type: 'application/octet-stream', lastModified: Date.now()});
-        const formData = new FormData();
-        formData.append('card', file);
-
-        const headers = new HttpHeaders();
-        headers.set('Content-Type', 'multipart/form-data');
-        this.http.post(SERVER_URL+'api/wallet/import', formData, {withCredentials: true, headers}).toPromise()
-        .then(data=>{
-          console.log(data)
-        },err=>{
-          console.log(err)
-        })
-    
-      },
-      err=>console.log(err)
-    );
-    
-  }
-
 
 
 
