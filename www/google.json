@@ -1131,7 +1131,8 @@
         "marker-color": "#63729a",
         "marker-size": "small",
         "marker-symbol": "",
-        "rmg_crane": "True"
+        "rmg_crane": "True",
+        "maintainance":"True"
       },
       "geometry": {
         "type": "Point",
@@ -1163,7 +1164,8 @@
         "marker-color": "#63729a",
         "marker-size": "small",
         "marker-symbol": "",
-        "rmg_crane": "True"
+        "rmg_crane": "True",
+        "maintainance":"True"
       },
       "geometry": {
         "type": "Point",
@@ -1195,7 +1197,8 @@
         "marker-color": "#63729a",
         "marker-size": "small",
         "marker-symbol": "",
-        "rmg_crane": "True"
+        "rmg_crane": "True",
+        "maintainance":"True"
       },
       "geometry": {
         "type": "Point",

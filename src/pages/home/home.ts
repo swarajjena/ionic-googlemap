@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
- 
+import { AlertController } from 'ionic-angular';
 declare var google;
 
 const routes=[
@@ -44,7 +44,7 @@ export class HomePage {
   moving_truck_marker=[];
 
  
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController) {
     setInterval(function(){
       this.moving_truck.push({cur_loc:{lat:18.952462677480824,lng:72.96023726463318},destination:1})
       let marker = new google.maps.Marker({
@@ -60,6 +60,64 @@ export class HomePage {
  
   ionViewDidLoad(){
     this.loadMap();
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Low battery',
+      subTitle: '10% of battery remaining',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+  
+  presentConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm purchase',
+      message: 'Do you want to buy this book?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Buy',
+          handler: () => {
+            console.log('Buy clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+   makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVXYZ123456789";
+  
+    for (var i = 0; i < 10; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
+  }
+
+
+  getContainerInfo(contId){
+    let html="<h3>ID : L"+contId+"</h3>"+
+            "<table border='1' class=\"info-window-table\">"+
+            " <tr> <th>Row</th> <th>Container No</th> </tr>"+
+            " <tr> <td>Row 1</td> <td>"+this.makeid()+"</td> </tr>"+
+            " <tr> <td>Row 2</td> <td>"+this.makeid()+"</td> </tr> "+
+            "<tr> <td>Row 3</td> <td>"+this.makeid()+"</td> </tr> "+
+            "<tr> <td>Row 4</td> <td>"+this.makeid()+"</td> </tr>"+
+            " <tr> <td>Row 5</td> <td>"+this.makeid()+"</td> </tr> "+
+            "</table>"+
+            "<div style='visibility:hidden'>jhbbjhbjhbjhbjhbbj</div>"
+      return html;
+    
   }
  
   loadMap(){
@@ -81,11 +139,17 @@ export class HomePage {
     // When the user clicks, open an infowindow
     this.map.data.addListener('click', function(event) {
       if(event.feature.getProperty("yard")){
-        this.infowindow.setContent("<div style='width:150px;height:100px'>"+event.feature.getProperty("yard")+"</div>");
+        this.infowindow.setContent("<div style='width:150px;height:100px'><h2>"+event.feature.getProperty("yard")+"</h2>Capacity: 80/100</div>");
       }else if(event.feature.getProperty("container")){
-        this.infowindow.setContent("<h3>ID : L"+event.feature.getProperty("no")+"</h3><table border='1' class=\"info-window-table\"> <tr> <th>Row</th> <th>Container No</th> </tr> <tr> <td>Row 1</td> <td>CONT1</td> </tr> <tr> <td>Row 2</td> <td>CONT2</td> </tr> <tr> <td>Row 3</td> <td>CONT3</td> </tr> <tr> <td>Row 4</td> <td>CONT4</td> </tr> <tr> <td>Row 5</td> <td>CONT5</td> </tr> </table>");
-      }else{
-        this.infowindow.setContent("<div style='width:150px;height:100px'>unknown</div>");
+        this.infowindow.setContent(this.getContainerInfo(event.feature.getProperty("no")));
+      }else if(event.feature.getProperty("trailer")){
+        this.infowindow.setContent("<div style='width:150px;height:100px'><h3>Truck</h3>Reg No : MH 0"+Math.ceil(Math.random()*8 )+"CE"+Math.floor(Math.random()*9999 )+" <br/>Port In: 21st July,7.30AM</div>");
+      }else if(event.feature.getProperty("rmg_crane")){
+        this.infowindow.setContent("<div style='width:200px;height:100px'><h3>RMG Crane</h3>Next Maintainance: 29st July</div>");
+      }else if(event.feature.getProperty("sts_crane") && event.feature.getProperty("maintainance")){
+        this.infowindow.setContent("<div style='width:200px;height:100px;color:#F00'><h3>STS Crane</h3>Estimated repair time: 29st July</div>");
+      }else if(event.feature.getProperty("sts_crane") && !event.feature.getProperty("maintainance")){
+        this.infowindow.setContent("<div style='width:200px;height:100px'><h3>STS Crane</h3>Next Maintainance: 29st July</div>");
       }
 //      var myHTML = event.feature.getProperty("description");
   //    this.infowindow.setContent("<div style='width:150px;height:100px'>"+myHTML+"</div>");
@@ -173,9 +237,15 @@ export class HomePage {
           };
         }
       }else if(feature.getProperty('rmg_crane')){
-        return {
-          icon: "./rmg_crane.png"
-        };
+        if(feature.getProperty('maintainance')){
+          return {
+            icon: "./rmg_crane.png"
+          };
+          }else{
+            return {
+              icon: "./rmg_crane.png"
+            };
+          }
       }else if(feature.getProperty('rtg_crane')){
         return {
           icon: "./rmg_crane.png"
@@ -265,7 +335,7 @@ export class HomePage {
             }
           }else{
 
-            let speed=(Math.floor(Math.random() * 3)+1)*0.00004; 
+            let speed=(Math.floor(Math.random() * 3)+1)*0.00001; 
 
             this.moving_truck[i].cur_loc.lat=this.moving_truck[i].cur_loc.lat+(((dst.lt-ct.lat)/dist)*speed);
             this.moving_truck[i].cur_loc.lng=this.moving_truck[i].cur_loc.lng+(((dst.lg-ct.lng)/dist)*speed);
