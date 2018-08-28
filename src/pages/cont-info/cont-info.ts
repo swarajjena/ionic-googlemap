@@ -63,7 +63,7 @@ export class ContInfoPage {
 
    file_upload_task=["viaRegistered","IGMFiled","registeredVesselDetails","billOfEntryRegistered"]
 
-   FILE_CHECK_TASK=["immigrationCompletedFormalities","customsCompletedFormalities","PHOCompletedFormalities","otherAuth1CompletedFormalities","otherAuth2CompletedFormalities"]
+   FILE_CHECK_TASK=["BerthAllocated","immigrationCompletedFormalities","customsCompletedFormalities","PHOCompletedFormalities","otherAuth1CompletedFormalities","otherAuth2CompletedFormalities"]
   
   
   myInput:String;
@@ -123,22 +123,20 @@ export class ContInfoPage {
 
 
   uploadDocument(){
+    
 
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
 
-    let data={
-      withCredentials:true,
-      access_token:"8ncH7lbnkMFeEAH81AOYAiRm29sesLF8xbGkhvVOBmxS2ByxYgbGlHRFJw6a7jY6"
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
+
+    let options={
+      headers:headers
     }
     
-    this.http.post(SERVER_URL+'api/viaRegistered',
-     data ,options).toPromise()
+    this.http.post(SERVER_URL+'api/BerthAllocated?access_token=F4gcFepG4awNZ3jTyx5Ld4A9qSzaLBlUeBZPwCoRqLMKWEjmFy3BQvHAAv1ubFuM&withCredentials=true',{} ,options).toPromise()
     .then(data=>{
           console.log(data)
-
         }
         ,err=>{
           console.log(err)
