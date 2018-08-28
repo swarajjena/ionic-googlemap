@@ -25678,6 +25678,269 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.ios page-cont-info, .md page-cont-info {
+  /* The actual timeline (the vertical ruler) */
+  /* The actual timeline (the vertical ruler) */
+  /* Container around content */
+  /* The circles on the timeline */
+  /*        .red_border{
+            border: 4px solid rgb(211, 11, 11);
+
+        }
+  */
+  /* Place the container to the left */
+  /* Place the container to the right */
+  /* Add arrows to the left container (pointing right) */
+  /* Add arrows to the right container (pointing left) */
+  /* Fix the circle for containers on the right side */
+  /* The actual content */
+  /* Media queries - Responsive timeline on screens less than 600px wide */
+}
+
+.ios page-cont-info *, .md page-cont-info * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ios page-cont-info body, .md page-cont-info body {
+  background-color: #474e5d;
+  font-family: Helvetica, sans-serif;
+}
+
+.ios page-cont-info .timeline, .md page-cont-info .timeline {
+  position: relative;
+  margin: 0 auto;
+}
+
+.ios page-cont-info .timeline::after, .md page-cont-info .timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #CCCCCC;
+  top: 0;
+  bottom: 0;
+  left: 10%;
+  margin-left: -3px;
+}
+
+.ios page-cont-info .container, .md page-cont-info .container {
+  padding: 5px 40px 5px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+.ios page-cont-info .container::after, .md page-cont-info .container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #0bd30b;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.ios page-cont-info .red_border:after, .md page-cont-info .red_border:after {
+  border: 4px solid #d30b0b;
+}
+
+.ios page-cont-info .left, .md page-cont-info .left {
+  left: 0;
+}
+
+.ios page-cont-info .right, .md page-cont-info .right {
+  left: 10%;
+}
+
+.ios page-cont-info .left::before, .md page-cont-info .left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 0px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+.ios page-cont-info .right::before, .md page-cont-info .right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.ios page-cont-info .right::after, .md page-cont-info .right::after {
+  left: -16px;
+}
+
+.ios page-cont-info .content, .md page-cont-info .content {
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .ios page-cont-info, .md page-cont-info {
+    /* Place the timelime to the left */
+    /* Full-width containers */
+    /* Make sure that all arrows are pointing leftwards */
+    /* Make sure all circles are at the same spot */
+    /* Make all right containers behave like the left ones */
+  }
+  .ios page-cont-info .timeline::after, .md page-cont-info .timeline::after {
+    left: 31px;
+  }
+  .ios page-cont-info .container, .md page-cont-info .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  .ios page-cont-info .container::before, .md page-cont-info .container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+  .ios page-cont-info .left::after, .ios page-cont-info .right::after, .md page-cont-info .left::after, .md page-cont-info .right::after {
+    left: 15px;
+  }
+  .ios page-cont-info .right, .md page-cont-info .right {
+    left: 0%;
+  }
+}
+
+.ios page-cont-info .toolbar-background-md, .md page-cont-info .toolbar-background-md {
+  border-color: #AB00B5;
+  background: #AB00B5;
+  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.14);
+}
+
+.ios page-cont-info ion-navbar.toolbar, .md page-cont-info ion-navbar.toolbar {
+  height: 70px;
+}
+
+.ios page-cont-info .toolbar-title-md, .md page-cont-info .toolbar-title-md {
+  color: #FFF;
+}
+
+.ios page-cont-info #notification-button, .md page-cont-info #notification-button {
+  position: relative;
+  width: 42px;
+  top: 1px;
+  right: 1px;
+  overflow: visible !important;
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 22px;
+}
+
+.ios page-cont-info #notifications-badge, .md page-cont-info #notifications-badge {
+  background-color: green;
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  border-radius: 100%;
+  overflow: visible !important;
+  color: #000;
+}
+
+.ios page-cont-info ion-buttons button, .md page-cont-info ion-buttons button {
+  color: #FFF;
+}
+
+.ios page-cont-info .info-window-table, .md page-cont-info .info-window-table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ios page-cont-info .info-window-table td, .ios page-cont-info .info-window-table th, .md page-cont-info .info-window-table td, .md page-cont-info .info-window-table th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.ios page-cont-info .info-window-table tr:nth-child(even), .md page-cont-info .info-window-table tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.ios page-cont-info .HorizontalNonLinearAlternativeLabelStepper, .md page-cont-info .HorizontalNonLinearAlternativeLabelStepper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background: #B9D6F1;
+}
+
+.ios page-cont-info .Stepper_active, .md page-cont-info .Stepper_active {
+  opacity: 1 !important;
+}
+
+.ios page-cont-info .HorizontalNonLinearAlternativeLabelStepper_cont, .md page-cont-info .HorizontalNonLinearAlternativeLabelStepper_cont {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 50px;
+  opacity: 0.5;
+}
+
+.ios page-cont-info .HorizontalNonLinearAlternativeLabelStepper_cont img, .md page-cont-info .HorizontalNonLinearAlternativeLabelStepper_cont img {
+  height: 100px;
+}
+
+.ios page-cont-info .HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216, .md page-cont-info .HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216 {
+  opacity: 0.5;
+}
+
+page-detail .login-box {
+  width: 400px;
+  margin-left: 250px;
+  border: 1px solid #aaa;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
 .ios home-page .scroll, .md home-page .scroll {
   height: 100%;
 }
