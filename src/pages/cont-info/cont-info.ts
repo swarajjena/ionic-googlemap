@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { DetailPage } from '../detail/detail';
 
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ContInfoPage page.
@@ -75,6 +76,7 @@ export class ContInfoPage {
   ionViewDidLoad() {
     this.storage.get("user").then(
       data=>{
+        if(data=="")return;
         let time_diff=new Date().getTime()-new Date(data.created).getTime()
         console.log(time_diff);
         if(time_diff<3600000){
@@ -101,6 +103,10 @@ export class ContInfoPage {
 
   make_active(ind){
     this.active_block=ind;
+  }
+
+  goToMApPage(){
+    this.navCtrl.push(HomePage)
   }
 
   get_task_list_vessel(){

@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+
+import { ContInfoPage } from '../cont-info/cont-info';
+
 declare var google;
 
 const routes=[
@@ -310,6 +313,10 @@ export class HomePage {
 
 
   }
+  goToMApPage(){
+    this.navCtrl.push(ContInfoPage)
+  }
+
 
   moveTruck(){
       for (let i in this.moving_truck){

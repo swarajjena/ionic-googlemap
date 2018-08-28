@@ -30,6 +30,7 @@ export class DetailPage {
     console.log('ionViewDidLoad DetailPage');
     this.storage.get("user").then(
       data=>{
+        if(data=="")return;
         let time_diff=new Date().getTime()-new Date(data.created).getTime()
         console.log(time_diff);
         if(time_diff>3600000){
