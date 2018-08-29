@@ -117,7 +117,7 @@ export class ContInfoPage {
         else if(this.navParams.get("vessel")){
           this.vesselID=this.navParams.get("vessel");
         }else{
-           this.vesselID="VESSEL1";
+           this.vesselID="J0522";
         }
         if(this.containerID!=""){
   
