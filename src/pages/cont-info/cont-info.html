@@ -11,9 +11,10 @@
       <a href="http://52.172.133.188:3000/dashboard"><button ion-button >PORT OPERATIONS</button></a>
       <a href="http://52.172.133.188:3000/dashboard"><button ion-button >TRANSPORT</button></a>
 
-      <button ion-button icon-start>
+      <button ion-button icon-start (click)="logout()">
       <ion-icon name="contact"></ion-icon>
-      {{user!={}?user.username:""}}
+      {{user!={}?user.username:""}} (LOGOUT)
+
       </button>
 
       <button ion-button ></button>
@@ -104,6 +105,14 @@
   </ion-buttons>
   </div>
 
+  <div style="text-align:center"   *ngIf="toDoTask!=null &&  (FILE_CHECK_TASK.indexOf(toDoTask)< 0 && file_upload_task.indexOf(toDoTask)<0)">
+      <ion-buttons>
+      
+        <button ion-button color="secondary"  (click)="uploadDocument()"> APPROVE </button>
+        <button ion-button color="danger"  (click)="disapproveDocument()"> DISAPPROVE </button>
+      </ion-buttons>
+  </div>
+    
 
 </div>
 </ion-row>

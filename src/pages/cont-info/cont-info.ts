@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { DetailPage } from '../detail/detail';
 
@@ -81,6 +81,25 @@ export class ContInfoPage {
 
   }
 
+  logout(){
+    
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+
+    let options={
+      headers:headers
+    }
+    this.http.post(SERVER_URL+'api/users/logout?access_token='+this.user.id,{},options).toPromise()
+    .then(data=>{
+        this.storage.set("user","").then(()=>{
+          this.navCtrl.push(DetailPage)
+        })
+
+    });
+
+  }
+
   ionViewDidLoad() {
     this.storage.get("user").then(
       data=>{
@@ -124,8 +143,6 @@ export class ContInfoPage {
 
   uploadDocument(){
     
-
-
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -133,10 +150,13 @@ export class ContInfoPage {
     let options={
       headers:headers
     }
+
+    let opts={vessel:"resource:org.hack.sagarmala.Vessel#"+this.vesselID,berth:"jkn"};
     
-    this.http.post(SERVER_URL+'api/BerthAllocated?access_token=F4gcFepG4awNZ3jTyx5Ld4A9qSzaLBlUeBZPwCoRqLMKWEjmFy3BQvHAAv1ubFuM&withCredentials=true',{} ,options).toPromise()
+    this.http.post(SERVER_URL+'api/'+this.toDoTask+"?access_token="+this.user.id,opts,options).toPromise()
     .then(data=>{
           console.log(data)
+          this.navCtrl.setRoot(ContInfoPage);
         }
         ,err=>{
           console.log(err)
