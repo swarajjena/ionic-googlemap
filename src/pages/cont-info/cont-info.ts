@@ -183,7 +183,7 @@ export class ContInfoPage {
 
     let access_tiken="withCredentials=true&access_token="+this.user.id;
   
-    this.http.get(OPEN_SERVER_URL+'api/queries/getTasksForVessel?vesselParam=VESSEL1',options).toPromise()
+    this.http.get(OPEN_SERVER_URL+'api/queries/getTasksForVessel?vesselParam='+this.vesselID,options).toPromise()
     .then(data=>{
           for(let i in data){
             console.log(data[i]);
