@@ -151,7 +151,14 @@ export class ContInfoPage {
       headers:headers
     }
 
-    let opts={vessel:"resource:org.hack.sagarmala.Vessel#"+this.vesselID,berth:"jkn"};
+    let opts;
+    if(this.file_upload_task.indexOf(this.toDoTask)>=0){
+      opts={vessel:"resource:org.hack.sagarmala.Vessel#"+this.vesselID,file_path:"jknkn"};
+    }else if(this.toDoTask=="BerthAllocated"){
+      opts={vessel:"resource:org.hack.sagarmala.Vessel#"+this.vesselID,berth:"jknkn"};
+    }else{
+      opts={vessel:"resource:org.hack.sagarmala.Vessel#"+this.vesselID};
+    }
     
     this.http.post(SERVER_URL+'api/'+this.toDoTask+"?access_token="+this.user.id,opts,options).toPromise()
     .then(data=>{
