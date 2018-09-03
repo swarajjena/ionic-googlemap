@@ -19,9 +19,9 @@
 
       <button ion-button ></button>
 
-      <button id="notification-button" ion-button end>
+      <button id="notification-button" ion-button end (click)="presentPopover($event)">
         <ion-icon name="notifications">
-          <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+          <ion-badge id="notifications-badge" color="danger">{{number_of_notifications}}</ion-badge>
         </ion-icon>              
     </button>
     </ion-buttons> 
@@ -32,10 +32,15 @@
 
   <ion-row>
       <h2 end col-6>{{containerID==""?"Vessel Number : "+vesselID :"Container number : "+containerID}} </h2>
+      <div>
+        <ion-label *ngIf="searchError"  style="margin-top:20px;color:red">No results found</ion-label>
+        <ion-spinner name="bubbles" *ngIf="searchActive" style="margin-top:20px"></ion-spinner>
+      </div>
+
 
       <ion-searchbar col-5
       style="float:right"
-      [(ngModel)]="myInput"
+      [(ngModel)]="mySearchInput"
       [showCancelButton]="shouldShowCancel"
       (keyup.enter)="search()"
       placeholder="Search with Container Number or Vessel Number" full>
@@ -63,58 +68,84 @@
       <div class="HorizontalNonLinearAlternativeLabelStepper-stepImgArw-216" [ngClass]="{'Stepper_active' : active_block>2}">
         <img src="images/ArrowIcon.svg" width="80" height="80">
       </div>
-      <div class="HorizontalNonLinearAlternativeLabelStepper_cont">
-        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215" [ngClass]="{'Stepper_active' : active_block===3}" (click)="make_active(3)">Port Out</span>
+      <div class="HorizontalNonLinearAlternativeLabelStepper_cont" [ngClass]="{'Stepper_active' : active_block===3}" (click)="make_active(3)">
+        <span class="HorizontalNonLinearAlternativeLabelStepper-stepImgSpan-215">Port Out</span>
         <img src="images/PortOutIcon.svg" width="80" height="80">
       </div>
     </div>
 
-<ion-row>    
-<div class="timeline" col-6>
+<ion-row>   
+<div class="vessel_list" col-2  >
+  <ion-list>
+        <button ion-button icon-start  [outline]=true style="border:2px solid #bc00ba;width:160px;color:#bc00ba" 
+        *ngFor="let v of vessel_list" (click)="vesselLeftClick(v)" [class.active_vessel]="v==vesselID">
+          <ion-icon name="boat"></ion-icon>
+          {{v}}
+        </button>                            
+  </ion-list>
+</div>
+
+
+
+<div class="timeline" col-5>
   <div   *ngFor="let evnt of   show_events[active_block]">
     <div class="container right" [ngClass]="{'red_border' : evnt.status!=='finished'}">
         <div class="content">
-          <h2>{{evnt.name}}</h2>
+          <h2 [class.active_task]="evnt.id==toDoTask">{{evnt.name}}</h2>
           <p>{{evnt.status!=='finished'?"Created at ":"Finished at "}}{{evnt.date | date: 'H:mm dd/MM/yyyy ' }} </p>
         </div>
       </div>                                     
   </div>      
 </div>
 
-<div class="work_area" col-6 >
+<div class="work_area" col-5 >
 
 
-    <div  *ngIf="toDoTask!=null &&  file_upload_task.indexOf(toDoTask)>=0">
+    <div  *ngIf="actual_active_block==active_block && toDoTask!=null &&  file_upload_task.indexOf(toDoTask)>=0">
         <img src="images/viaRegistered.png" class="document_view" style="height: 500px;">
         <ion-buttons>
-
             <input type="file" ion-input />
-            <br >
-        
+            <br >        
           <button ion-button color="secondary" (click)="uploadDocument()"> UPLOAD </button>
         </ion-buttons>
     </div>
       
       
-  <div style="text-align:center"   *ngIf="toDoTask!=null &&  FILE_CHECK_TASK.indexOf(toDoTask)>=0">
-  <img src="images/viaRegistered.png" class="document_view" style="height: 500px;" >
-  <ion-buttons>
-  
-    <button ion-button color="secondary"  (click)="uploadDocument()"> APPROVE </button>
-    <button ion-button color="danger"  (click)="disapproveDocument()"> DISAPPROVE </button>
-  </ion-buttons>
-  </div>
-
-  <div style="text-align:center"   *ngIf="toDoTask!=null &&  (FILE_CHECK_TASK.indexOf(toDoTask)< 0 && file_upload_task.indexOf(toDoTask)<0)">
-      <ion-buttons>
-      
+  <div style="text-align:center"   *ngIf="actual_active_block==active_block && toDoTask!=null &&  FILE_CHECK_TASK.indexOf(toDoTask)>=0">
+      <img src="images/viaRegistered.png" class="document_view" style="height: 500px;" >
+      <ion-buttons>      
         <button ion-button color="secondary"  (click)="uploadDocument()"> APPROVE </button>
         <button ion-button color="danger"  (click)="disapproveDocument()"> DISAPPROVE </button>
       </ion-buttons>
   </div>
-    
+
+  <div style="text-align:center"   *ngIf="user.username=='LDB1' && actual_active_block==active_block && toDoTask!=null &&  (FILE_CHECK_TASK.indexOf(toDoTask)< 0 && file_upload_task.indexOf(toDoTask)<0)">
+      <div style="font-size:16px;margin:20px">
+          <b>REST API</b> <br><br>
+          Api could be provided to get data from LDB.<br><br>
+          
+          To complete simulation, please click below button:
+        
+        </div>
+      <ion-buttons>      
+        <button ion-button color="secondary"  (click)="uploadDocument()"> COMPLETED </button>
+      </ion-buttons>
+  </div>
+
+  <div style="text-align:center"   *ngIf="user.username!='LDB1' && actual_active_block==active_block && toDoTask!=null &&  (FILE_CHECK_TASK.indexOf(toDoTask)< 0 && file_upload_task.indexOf(toDoTask)<0)">
+      <ion-buttons>      
+        <button ion-button color="secondary"  (click)="uploadDocument()"> COMPLETED </button>
+      </ion-buttons>
+  </div>
+  
 
 </div>
 </ion-row>
+
+<div class="toast_holder">
+    <div *ngFor="let tst of all_toasts" class="toast_msg">
+      <a href="{{tst.link}}">{{tst.msg}}</a>        
+    </div>
+</div>
 
 </ion-content>

@@ -26,7 +26,7 @@
             background-color: #CCCCCC;
             top: 0;
             bottom: 0;
-            left: 10%;
+            left: 0%;
             margin-left: -3px;
         }
         
@@ -68,7 +68,7 @@
         
         /* Place the container to the right */
         .right {
-            left: 10%;
+//            left: 10%;
         }
         
         /* Add arrows to the left container (pointing right) */
@@ -101,7 +101,7 @@
         
         /* Fix the circle for containers on the right side */
         .right::after {
-            left: -16px;
+            left: -21px;
         }
         
         /* The actual content */
@@ -222,6 +222,7 @@
         flex-direction: column;
         margin:50px;
         opacity : 0.5;
+        cursor: pointer;
     }
     .HorizontalNonLinearAlternativeLabelStepper_cont img{
         height: 100px;
@@ -248,6 +249,42 @@
     
 
     .document_view{
+    }
+
+    .active_task{
+        color:#4444FF
+    }
+
+    .active_vessel{
+        background:rgba(255,0,255,0.3);
+    }
+
+    .toast_holder{
+        position: fixed;
+        right:10px;
+        width:350px;
+        bottom:30px;
+        display: none
+    }
+
+    .toast_msg a{
+        cursor: pointer;
+        width:100%;
+        height: 100%;
+        text-decoration: none;
+        color:inherit
+    }
+
+    .toast_msg{
+        width:90%;
+        background: rgba(70,20,80,0.6);
+        color:#eee;
+        padding: 10px;
+        margin: 10px;
+        min-height: 70px;
+        -webkit-box-shadow: 4px 6px 12px -5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 4px 6px 12px -5px rgba(0,0,0,0.75);
+        box-shadow: 4px 6px 12px -5px rgba(0,0,0,0.75);        
     }
 
 }
